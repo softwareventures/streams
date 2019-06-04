@@ -40,6 +40,10 @@ export class Stream<T> {
     }
 }
 
+export function empty(): Stream<never> {
+    return new Stream((emit, end) => end());
+}
+
 export function filter<T>(stream: Stream<T>, predicate: (element: T) => boolean): Stream<T> {
     return new Stream((emit, end) => stream.to({
         element: element => {
