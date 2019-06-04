@@ -1,0 +1,1 @@
+export type Emitter<T> = (emit: (element: T) => void, end: () => void) => void;
