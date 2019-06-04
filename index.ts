@@ -91,3 +91,31 @@ export function interleaveMap<T, U>(stream: Stream<T>, f: (element: T) => Stream
         });
     });
 }
+
+export function interleavePromises<T>(promises: Stream<Promise<T>>): Stream<T> {
+    return new Stream((emit, end) => {
+        let promiseCount = 0;
+        let sourceEnded = false;
+
+        function maybeEnd(): void {
+            if (sourceEnded && promiseCount === 0) {
+                end();
+            }
+        }
+
+        promises.to({
+            element: promise => {
+                ++promiseCount;
+                promise.then(value => {
+                    emit(value);
+                    --promiseCount;
+                    maybeEnd();
+                });
+            },
+            end: () => {
+                sourceEnded = true;
+                maybeEnd();
+            }
+        });
+    });
+}
