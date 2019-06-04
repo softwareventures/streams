@@ -1,3 +1,5 @@
+import {copy} from "@softwareventures/array";
+
 export type Emitter<T> = (emit: (element: T) => void, end: () => void) => void;
 
 export interface Sink<T> {
@@ -10,7 +12,11 @@ export class Stream<T> {
     private prebuffer: T[] | null = [];
     private sinks: Array<Sink<T>> | null = [];
 
-    constructor(emitter: Emitter<T>) {
+    constructor(emitter: Emitter<T>, initial?: ArrayLike<T>) {
+        if (initial != null) {
+            this.prebuffer = copy(initial);
+        }
+
         emitter(element => {
             if (this.prebuffer != null) {
                 this.prebuffer.push(element);
@@ -90,6 +96,10 @@ export function interleaveMap<T, U>(stream: Stream<T>, f: (element: T) => Stream
             }
         });
     });
+}
+
+export function streamArray<T>(array: ArrayLike<T>): Stream<T> {
+    return new Stream((emit, end) => end(), array);
 }
 
 export function interleavePromises<T>(promises: Stream<Promise<T>>): Stream<T> {

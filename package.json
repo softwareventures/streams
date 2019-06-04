@@ -3,7 +3,11 @@
   "name": "@softwareventures/streams",
   "version": "0.0.0-development",
   "description": "Typesafe asynchronous streams",
-  "keywords": ["TypeScript", "streams", "functional"],
+  "keywords": [
+    "TypeScript",
+    "streams",
+    "functional"
+  ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
   "homepage": "https://github.com/softwareventures/streams",
   "bugs": "https://github.com/softwareventures/streams",
@@ -16,7 +20,7 @@
   },
   "devDependencies": {
     "@softwareventures/tsconfig": "2.0.0",
-    "@softwareventures/tslint-rules": "0.6.6",
+    "@softwareventures/tslint-rules": "0.7.0",
     "ava": "1.4.1",
     "cz-conventional-changelog": "2.1.0",
     "semantic-release": "15.13.12",
@@ -37,5 +41,8 @@
     "require": [
       "ts-node/register"
     ]
+  },
+  "dependencies": {
+    "@softwareventures/array": "^0.14.0"
   }
 }
