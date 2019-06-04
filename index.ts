@@ -57,3 +57,33 @@ export function map<T, U>(stream: Stream<T>, f: (element: T) => U): Stream<U> {
         end
     }));
 }
+
+export function interleaveMap<T, U>(stream: Stream<T>, f: (element: T) => Stream<U>): Stream<U> {
+    return new Stream((emit, end) => {
+        let substreams = 0;
+        let sourceEnded = false;
+
+        function maybeEnd(): void {
+            if (substreams === 0 && sourceEnded) {
+                end();
+            }
+        }
+
+        stream.to({
+            element: (element: T) => {
+                ++substreams;
+                f(element).to({
+                    element: emit,
+                    end: () => {
+                        --substreams;
+                        maybeEnd();
+                    }
+                });
+            },
+            end: () => {
+                sourceEnded = true;
+                maybeEnd();
+            }
+        });
+    });
+}

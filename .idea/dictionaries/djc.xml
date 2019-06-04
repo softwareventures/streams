@@ -2,6 +2,7 @@
   <dictionary name="djc">
     <words>
       <w>prebuffer</w>
+      <w>substreams</w>
     </words>
   </dictionary>
 </component>
