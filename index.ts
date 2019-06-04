@@ -102,6 +102,14 @@ export function streamArray<T>(array: ArrayLike<T>): Stream<T> {
     return new Stream((emit, end) => end(), array);
 }
 
+export function streamPromise<T>(promise: Promise<T>): Stream<T> {
+    return new Stream((emit, end) => promise
+        .then(value => {
+            emit(value);
+            end();
+        }));
+}
+
 export function interleavePromises<T>(promises: Stream<Promise<T>>): Stream<T> {
     return new Stream((emit, end) => {
         let promiseCount = 0;
