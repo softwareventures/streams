@@ -50,3 +50,10 @@ export function filter<T>(stream: Stream<T>, predicate: (element: T) => boolean)
         end
     }));
 }
+
+export function map<T, U>(stream: Stream<T>, f: (element: T) => U): Stream<U> {
+    return new Stream((emit, end) => stream.to({
+        element: element => emit(f(element)),
+        end
+    }));
+}
