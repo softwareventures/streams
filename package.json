@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "name": "@softwareventures/streams",
+  "version": "0.0.0-development",
+  "description": "Typesafe asynchronous streams",
+  "keywords": ["TypeScript", "streams", "functional"],
+  "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
+  "homepage": "https://github.com/softwareventures/streams",
+  "bugs": "https://github.com/softwareventures/streams",
+  "repository": "github:softwareventures/streams",
+  "license": "ISC",
+  "scripts": {
+    "prepare": "tsc",
+    "semantic-release": "semantic-release",
+    "test": "tslint --project . && ava"
+  },
+  "devDependencies": {
+    "@softwareventures/tsconfig": "2.0.0",
+    "@softwareventures/tslint-rules": "0.6.6",
+    "ava": "1.4.1",
+    "cz-conventional-changelog": "2.1.0",
+    "semantic-release": "15.13.12",
+    "ts-node": "8.2.0",
+    "tslint": "5.17.0",
+    "typescript": "3.5.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
