@@ -6,7 +6,8 @@
   "keywords": [
     "TypeScript",
     "streams",
-    "functional"
+    "functional",
+    "async"
   ],
   "author": "Daniel Cassidy <mail@danielcassidy.me.uk>",
   "homepage": "https://github.com/softwareventures/streams",
