@@ -45,6 +45,6 @@
     ]
   },
   "dependencies": {
-    "@softwareventures/array": "^0.14.0"
+    "@softwareventures/array": "^0.16.0"
   }
 }
