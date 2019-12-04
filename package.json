@@ -21,7 +21,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "@softwareventures/tsconfig": "2.0.0",
+    "@softwareventures/tsconfig": "2.1.0",
     "@softwareventures/tslint-rules": "0.7.0",
     "ava": "1.4.1",
     "cz-conventional-changelog": "3.0.2",
