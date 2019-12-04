@@ -128,6 +128,10 @@ export function interleavePromises<T>(promises: Stream<Promise<T>>): Stream<T> {
                     emit(value);
                     --promiseCount;
                     maybeEnd();
+                }, reason => {
+                    --promiseCount;
+                    // TODO Handle errors properly
+                    console.error("stream error", reason);
                 });
             },
             end: () => {
